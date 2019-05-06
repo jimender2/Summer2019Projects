@@ -3,32 +3,80 @@ import java.util.Random;
 public class ConwayGameOfLife {
 
 	public static void main(String[] args) {
-		int[][] X = new int[10][10];
+		int[][] array = new int[10][10];
 
-		for(int i = 0; i < X.length; i++)
-			for(int q = 0; q < X[i].length; q++)
-				X[i][q] = rand();
+		for(int i = 0; i < array.length; i++)
+			for(int q = 0; q < array[i].length; q++)
+				array[i][q] = rand();
 
-		print(X);
+		print(array);
 
-		for(int count = 10; count > 0; count--) {
+		for(int count = 1; count > 0; count--) {
 			int[][] old;
-			old = X;
+			old = array;
 
 			int[][] N = new int[old.length][old[0].length];
 
+			int temp;
+
 			// Check and change each cell
-
-
-
+			for(int X = 0; X < old.length; X++)
+				for(int Y = 0; Y < old[X].length; Y++) {
+					temp = countNeighbors(old, X, Y);
+					if(temp < 2) {
+						N[X][Y] = 0;
+					} else if(temp > 3) {
+						N[X][Y] = 0;
+					} else if(temp == 3) {
+						N[X][Y] = 1;
+					} else if(temp == 2) {
+						N[X][Y] = old[X][Y];
+					}
+				}
 
 
 			// Set new array equal to the main array
-			X = N;
+			array = N;
+			print(array);
 		}
 
 
 
+	}
+
+	public static int countNeighbors(int[][] array, int X, int Y) {
+
+		int neighbors = 0;
+
+		if(array[X-1][Y-1] == 1) {
+			neighbors = neighbors + 1;
+		}
+		if(array[X-1][Y] == 1) {
+			neighbors = neighbors + 1;
+		}
+		if(array[X-1][Y+1] == 1) {
+			neighbors = neighbors + 1;
+		}
+		if(array[X+1][Y-1] == 1) {
+			neighbors = neighbors + 1;
+		}
+		if(array[X+1][Y] == 1) {
+			neighbors = neighbors + 1;
+		}
+		if(array[X+1][Y+1] == 1) {
+			neighbors = neighbors + 1;
+		}
+		if(array[X][Y-1] == 1) {
+			neighbors = neighbors + 1;
+		}
+		if(array[X][Y] == 1) {
+			neighbors = neighbors + 1;
+		}
+		if(array[X][Y+1] == 1) {
+			neighbors = neighbors + 1;
+		}
+
+		return neighbors;
 	}
 
 	public static int rand() {
