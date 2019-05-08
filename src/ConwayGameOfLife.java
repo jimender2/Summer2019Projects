@@ -36,6 +36,7 @@ public class ConwayGameOfLife {
 
 
 			// Set new array equal to the main array
+			System.out.println();
 			array = N;
 			print(array);
 		}
@@ -48,34 +49,11 @@ public class ConwayGameOfLife {
 
 		int neighbors = 0;
 
-		if(array[X-1][Y-1] == 1) {
-			neighbors = neighbors + 1;
+		if(X-1 < 0) {
+			if(Y-1 < 0 && Y+1 > array[X].length) {
+				neighbors = neighbors + 1;
+			}
 		}
-		if(array[X-1][Y] == 1) {
-			neighbors = neighbors + 1;
-		}
-		if(array[X-1][Y+1] == 1) {
-			neighbors = neighbors + 1;
-		}
-		if(array[X+1][Y-1] == 1) {
-			neighbors = neighbors + 1;
-		}
-		if(array[X+1][Y] == 1) {
-			neighbors = neighbors + 1;
-		}
-		if(array[X+1][Y+1] == 1) {
-			neighbors = neighbors + 1;
-		}
-		if(array[X][Y-1] == 1) {
-			neighbors = neighbors + 1;
-		}
-		if(array[X][Y] == 1) {
-			neighbors = neighbors + 1;
-		}
-		if(array[X][Y+1] == 1) {
-			neighbors = neighbors + 1;
-		}
-
 		return neighbors;
 	}
 
