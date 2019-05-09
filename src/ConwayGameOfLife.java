@@ -52,7 +52,7 @@ public class ConwayGameOfLife {
 		if(X-1 < 0) {
 			if(Y-1 < 0 && Y+1 > array[X].length) {
 				neighbors = neighbors + 1;
-			}
+			} else
 		}
 		return neighbors;
 	}
